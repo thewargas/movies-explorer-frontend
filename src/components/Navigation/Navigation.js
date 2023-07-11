@@ -17,18 +17,28 @@ function Navigation({ isOpen }) {
           </li>
         )}
         <li className="navigation__element">
-          <Link to="/" className="navigation__link navigation__link_active">
+          <Link
+            to="/movies"
+            className={`navigation__link ${
+              pathname === "/movies" && `navigation__link_active`
+            }`}
+          >
             Фильмы
           </Link>
-          {pathname === "/films" && (
+          {pathname === "/movies" && (
             <div className="navigation__line-link"></div>
           )}
         </li>
         <li className="navigation__element">
-          <Link to="/" className="navigation__link">
+          <Link
+            to="/saved-movies"
+            className={`navigation__link ${
+              pathname === "/saved-movies" && `navigation__link_active`
+            }`}
+          >
             Сохранённые фильмы
           </Link>
-          {pathname === "/saved-films" && (
+          {pathname === "/saved-movies" && (
             <div className="navigation__line-link"></div>
           )}
         </li>
