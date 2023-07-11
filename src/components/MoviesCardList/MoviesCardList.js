@@ -34,7 +34,7 @@ function MoviesCardList() {
         : savedMovies.map((card) => {
             return <MoviesCard key={card._id} card={card} />;
           })}
-      <button className="cards__button">Ещё</button>
+      {pathname === "/movies" && <button className="cards__button">Ещё</button>}
     </section>
   );
 }
