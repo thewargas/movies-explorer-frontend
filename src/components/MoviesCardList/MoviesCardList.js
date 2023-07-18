@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import initialCards from "../../utils/movies";
 import useWindowSize from "../../hooks/getWindowSize";
+// import Preloader from "../Preloader/Preloader";
 
 function MoviesCardList() {
   const { pathname } = useLocation();
@@ -27,6 +28,7 @@ function MoviesCardList() {
 
   return (
     <section className="cards">
+      {/* <Preloader /> */}
       {pathname === "/movies"
         ? cards.map((card) => {
             return <MoviesCard key={card._id} card={card} />;

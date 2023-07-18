@@ -38,6 +38,11 @@
   transition: font-size 0.2s linear;
 }
 
+.navtab__link:hover {
+  opacity: 0.8;
+  transition: opacity 0.2s linear;
+}
+
 @media (max-width: 425px) {
   .navtab {
     bottom: 17px;

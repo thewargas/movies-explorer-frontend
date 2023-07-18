@@ -10,6 +10,8 @@ function Portfolio() {
           <a
             href="https://github.com/thewargas/how-to-learn"
             className="portfolio__link"
+            target="_blank"
+            rel="noreferrer"
           >
             Статичный сайт <span className="portfolion__icon">↗</span>
           </a>
@@ -18,6 +20,8 @@ function Portfolio() {
           <a
             href="https://github.com/thewargas/russian-travel"
             className="portfolio__link"
+            target="_blank"
+            rel="noreferrer"
           >
             Адаптивный сайт <span className="portfolion__icon">↗</span>
           </a>
@@ -26,6 +30,8 @@ function Portfolio() {
           <a
             href="https://github.com/thewargas/react-mesto-api-full-gha"
             className="portfolio__link"
+            target="_blank"
+            rel="noreferrer"
           >
             Одностраничное приложение
             <span className="portfolion__icon">↗</span>

@@ -21,7 +21,12 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
-  transition: font-size 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+.header__link:hover {
+  opacity: 0.8;
+  transition: opacity 0.2s linear;
 }
 
 .header__link_type_login {
@@ -52,6 +57,7 @@
   background-position: center center;
   border: 0;
   cursor: pointer;
+  transition: all 0.1s linear;
 }
 
 @media (max-width: 768px) {
@@ -68,6 +74,10 @@
 }
 
 @media (max-width: 425px) {
+  .header {
+    width: calc(100% - 28px);
+    padding: 0 14px;
+  }
   .header__auth {
     gap: 14px;
   }
@@ -77,5 +87,10 @@
   .header__link_type_login {
     width: 54px;
     height: 26px;
+  }
+  .header__burger-button {
+    background-image: url("../../images/burger-button-mobile.svg");
+    width: 40px;
+    height: 43px;
   }
 }

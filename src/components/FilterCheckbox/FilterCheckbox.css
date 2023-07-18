@@ -1,13 +1,14 @@
 .checkbox {
-  padding: 0 30px;
-  width: calc(100% - 60px);
+  padding: 0 30px 0 31px;
+  width: calc(226px - 61px);
   height: 34px;
   display: flex;
   align-items: center;
   gap: 14px;
+  transition: all 0.2s linear;
 }
 
-.checkbox__container {
+.checkbox__container { 
   position: relative;
   width: 34px;
   height: 14px;
@@ -32,6 +33,10 @@
 
 .checkbox__title {
   margin: 0;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
 }
 
 .checkbox__container_disabled {
@@ -44,11 +49,21 @@
   background-color: #F5F5F5;
 }
 
+@media (max-width: 768px) {
+  .checkbox {
+    padding: 0 20px 0 21px;
+    width: calc(207px - 39px);
+    gap: 15px;
+  }
+}
+
 @media (max-width: 600px) {
   .checkbox {
+    margin-left: 4px;
     padding: 0;
     width: 148px;
     height: 20px;
+    gap: 13px;
   }
   .checkbox__title {
     font-size: 11px;

@@ -8,7 +8,7 @@
 }
 
 .promo__title {
-  margin: 160px 0 0;
+  margin: 180px 0 0;
   text-align: center;
   font-size: 50px;
   line-height: 58px;
@@ -32,14 +32,14 @@
 
 @media (max-width: 768px) {
   .promo {
-    min-height: 834px;
+    min-height: 854px;
   }
   .promo__overlay {
     right: 20px;
     left: 20px;
   }
   .promo__title {
-    margin: 350px 44px 0;
+    margin: 371px 44px 0;
     max-width: 680px;
     font-size: 40px;
     line-height: 52px;
@@ -49,7 +49,7 @@
 
 @media (max-width: 425px) {
   .promo {
-    min-height: 586px;
+    min-height: 600px;
   }
   .promo__overlay {
     top: 14px;
@@ -57,7 +57,7 @@
     left: 14px;
   }
   .promo__title {
-    margin: 220px 14px 0;
+    margin: 234px 14px 0;
     max-width: 680px;
     font-size: 29px;
     line-height: 37px;

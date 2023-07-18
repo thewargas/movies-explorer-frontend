@@ -23,10 +23,11 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  background-color: #F9F9F9;
 }
 
 .cards__button:hover {
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 @media (max-width: 1024px) {
@@ -69,6 +70,6 @@
     grid-template-columns: repeat(auto-fit, minmax(calc(100% - 20px), 1fr));
   }
   .cards__button {
-    margin-top: 64px;
+    margin-top: 66px;
   }
 }

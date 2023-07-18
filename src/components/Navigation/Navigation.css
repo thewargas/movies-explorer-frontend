@@ -12,7 +12,7 @@
   min-width: 212px;
   list-style: none;
   display: flex;
-  gap: 16px;
+  gap: 18px;
   transition: gap 0.2s linear;
 }
 
@@ -31,6 +31,11 @@
   line-height: 18px;
 }
 
+.navigation__link:hover {
+  opacity: 0.8;
+  transition: opacity 0.2s linear;
+}
+
 .navigation__link_active {
   font-weight: 500;
 }
@@ -38,13 +43,18 @@
 .navigation__profile-link {
   width: 100px;
   display: flex;
-  gap: 17px;
+  gap: 18px;
   align-items: center;
   text-decoration: none;
   color: #000000;
   font-size: 14px;
   font-weight: 500;
   line-height: 16px;
+}
+
+.navigation__profile-link:hover {
+  opacity: 0.8;
+  transition: opacity 0.2s linear;
 }
 
 .navigation__profile-image {
@@ -60,12 +70,14 @@
     flex-direction: column;
   }
   .navigation__list {
+    margin-top: 3px;
     min-width: 340px;
     flex-direction: column;
     align-items: center;
     gap: 28px;
   }
   .navigation__link {
+    height: 20px;
     font-size: 18px;
     font-weight: 500;
   }
