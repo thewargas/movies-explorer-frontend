@@ -1,0 +1,71 @@
+.burger {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.burger__overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s linear, visibility 0.3s linear;
+}
+
+.burger__container {
+  position: relative;
+  width: 520px;
+  height: 100vh;
+  z-index: 2;
+  background-color: #FFF;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(+100%);
+  align-items: center;
+  transition: transform 0.3s linear;
+}
+
+.burger__close-button {
+  position: absolute;
+  top: 22.44px;
+  right: 22.44px;
+  padding: 0;
+  background-image: url(../../images/burger-close-button.svg);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border: 0;
+  width: 22px;
+  height: 22px;
+  transition: top 0.2s linear, right 0.2s linear;
+}
+
+@media (max-width: 768px) {
+  .burger__overlay_active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .burger__container_active {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 425px) {
+  .burger__close-button {
+    top: 13.44px;
+    right: 13.44px;
+  }
+}

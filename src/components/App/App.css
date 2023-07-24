@@ -1,0 +1,57 @@
+.page {
+  min-width: 320px;
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Inter", Arial, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #000000;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+.section {
+  width: calc(100% - 140px);
+  padding: 110px 70px;
+  transition: width 0.2s linear, padding 0.2s linear;
+}
+
+.section-title {
+  margin: 0 0 23px;
+  font-size: 22px;
+  letter-spacing: -0.88px;
+  font-weight: 400;
+  text-align: start;
+  transition: all 0.2s linear;
+}
+
+.section-underline {
+  margin: 0;
+  width: calc(100% - 2px);
+}
+
+@media (max-width: 768px) {
+  .section {
+    width: calc(100% - 100px);
+    padding: 90px 50px;
+  }
+}
+@media (max-width: 425px) {
+  .section {
+    width: calc(100% - 36px);
+    padding: 70px 18px;
+  }
+  .section_type_about-me {
+    width: calc(100% - 28px);
+    padding: 70px 14px;
+  }
+  .section-title {
+    margin-bottom: 28px;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+}

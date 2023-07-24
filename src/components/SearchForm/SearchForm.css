@@ -1,0 +1,110 @@
+.search {
+  padding: 70px 0;
+  width: calc(100% - 140px);
+  height: 72px;
+  display: flex;
+  border-bottom: 1px solid #E8E8E8;
+  transition: all 0.2s linear;
+}
+
+.search__form {
+  width: 100%;
+  border-radius: 9px;
+  background-color: #FDFDFD;
+  box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  transition: all 0.2s linear;
+}
+
+.search__container {
+  min-width: calc(100% - 226px);
+  box-sizing: border-box;
+  padding: 0 19px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid #CBCBCB;
+  gap: 10px;
+  transition: all 0.2s linear;
+}
+
+.search__icon {
+  width: 34px;
+  height: 34px;
+}
+
+.search__input {
+  background-color: transparent;
+  padding: 0;
+  width: calc(100% - 134px);
+  height: 34px;
+  border: 0;
+  color: #000;
+  font-size: 18px;
+  line-height: 20px;
+  outline: none;
+}
+
+.search__input:focus {
+  border: gray 1px solid;
+  border-radius: 12px;
+}
+.search__button {
+  width: 80px;
+  height: 34px;
+  background-image: url(../../images/search-button.svg);
+  background-color: transparent;
+  border: 0;
+  transition: opacity 0.2s linear;
+  cursor: pointer;
+}
+
+.search__button:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .search {
+    padding: 80px 0 110px;
+    width: calc(100% - 60px);
+  }
+  .search__container {
+    min-width: calc(100% - 207px);
+  }
+}
+
+@media (max-width: 600px) {
+  .search {
+    height: fit-content;
+    padding: 80px 0 44px;
+    width: calc(100% - 20px);
+  }
+  .search__form {
+    flex-direction: column;
+    gap: 45px;
+    border: 0;
+    background-color: transparent;
+    box-shadow: none;
+  }
+  .search__container {
+    width: 100%;
+    min-height: 72px;
+    border-radius: 9px;
+    background-color: #FDFDFD;
+    box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+    border: 0;
+  }
+}
+
+@media (max-width: 425px) {
+  .search__icon {
+    display: none;
+  }
+  .search__input {
+    width: calc(100% - 90px);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+  }
+}
