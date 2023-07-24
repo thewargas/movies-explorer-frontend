@@ -46,6 +46,10 @@
   outline: none;
 }
 
+.search__input:focus {
+  border: gray 1px solid;
+  border-radius: 12px;
+}
 .search__button {
   width: 80px;
   height: 34px;

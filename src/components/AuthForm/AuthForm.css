@@ -51,6 +51,10 @@
   line-height: normal;
 }
 
+.auth__input:focus {
+  border: gray solid 1px;
+}
+
 .auth__input_type_error {
   color: #FF4062;
 }

@@ -6,27 +6,27 @@ function Portfolio() {
     <div className="portfolio">
       <h3 className="portfolio__title">Портфолио</h3>
       <ul className="portfolio__list">
-        <li className="porfolio__element">
+        <li className="portfolio__element">
           <a
             href="https://github.com/thewargas/how-to-learn"
             className="portfolio__link"
             target="_blank"
             rel="noreferrer"
           >
-            Статичный сайт <span className="portfolion__icon">↗</span>
+            Статичный сайт <span className="portfolio__icon">↗</span>
           </a>
         </li>
-        <li className="porfolio__element">
+        <li className="portfolio__element">
           <a
             href="https://github.com/thewargas/russian-travel"
             className="portfolio__link"
             target="_blank"
             rel="noreferrer"
           >
-            Адаптивный сайт <span className="portfolion__icon">↗</span>
+            Адаптивный сайт <span className="portfolio__icon">↗</span>
           </a>
         </li>
-        <li className="porfolio__element">
+        <li className="portfolio__element">
           <a
             href="https://github.com/thewargas/react-mesto-api-full-gha"
             className="portfolio__link"
@@ -34,7 +34,7 @@ function Portfolio() {
             rel="noreferrer"
           >
             Одностраничное приложение
-            <span className="portfolion__icon">↗</span>
+            <span className="portfolio__icon">↗</span>
           </a>
         </li>
       </ul>
