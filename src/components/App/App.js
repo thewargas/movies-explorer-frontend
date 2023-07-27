@@ -96,15 +96,13 @@ function App() {
   }
 
   function handleUpdateUser(inputs) {
-    if (inputs.userEmail === currentUser.email) {
-      MainApi.changeUserInfo(inputs.userName)
-        .then((data) => {
-          setCurrentUser(data);
-        })
-        .catch((error) => {
-          handleSetApiError(error);
-        });
-    }
+    MainApi.changeUserInfo(inputs.userName, inputs.userEmail)
+      .then((data) => {
+        setCurrentUser(data);
+      })
+      .catch((error) => {
+        handleSetApiError(error);
+      });
   }
 
   function handleLogout() {
