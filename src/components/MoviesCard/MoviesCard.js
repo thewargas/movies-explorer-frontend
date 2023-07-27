@@ -8,14 +8,28 @@ function MoviesCard({ card }) {
 
   const [isSave, setSave] = useState(false);
 
+  const handleTimeTransformation = (duration) => {
+    const hours = Math.floor(duration / 60);
+    const minutes = duration % 60;
+    return `${
+      (hours > 0 ? `${hours}ч ` : "") + (minutes > 0 ? `${minutes}м` : "")
+    }`;
+  };
+
   return (
     <article className="card">
       <figure className="card__container">
-        <img className="card__image" src={card.image} alt={card.name} />
+        <img
+          className="card__image"
+          src={`https://api.nomoreparties.co/${card.image.url}`}
+          alt={card.nameRU}
+        />
         <figcaption className="card__header">
           <div className="card__info">
-            <h2 className="card__title">{card.name}</h2>
-            <p className="card__subtitle">{card.duration}</p>
+            <h2 className="card__title">{card.nameRU}</h2>
+            <p className="card__subtitle">
+              {handleTimeTransformation(card.duration)}
+            </p>
           </div>
           {pathname === "/saved-movies" ? (
             <button

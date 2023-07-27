@@ -1,23 +1,20 @@
 import "./FilterCheckbox.css";
 import React from "react";
-import { useState } from "react";
 
-function FilterCheckbox() {
-  const [isActive, setActive] = useState(true);
-
+function FilterCheckbox({ isChecked, setChecked }) {
   return (
     <div className="checkbox">
       <div
         className={`checkbox__container ${
-          !isActive && `checkbox__container_disabled`
+          !isChecked && `checkbox__container_disabled`
         }`}
         onClick={() => {
-          setActive(!isActive);
+          setChecked(!isChecked);
         }}
       >
         <button
           className={`checkbox__button ${
-            !isActive && `checkbox__button_disabled`
+            !isChecked && `checkbox__button_disabled`
           }`}
           type="button"
         ></button>

@@ -8,6 +8,16 @@
   transition: all 0.2s linear;
 }
 
+.cards__title {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
 .cards__button {
   margin-top: 50px;
   padding: 0;
@@ -24,6 +34,7 @@
   font-weight: 500;
   line-height: normal;
   background-color: #F9F9F9;
+  color: black;
 }
 
 .cards__button:hover {

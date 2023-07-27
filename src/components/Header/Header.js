@@ -1,14 +1,12 @@
 import "./Header.css";
 import React from "react";
 import { useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import Navigation from "../Navigation/Navigation";
 import Burger from "../Burger/Burger";
 
-function Header() {
-  const { pathname } = useLocation();
-
+function Header({ loggedIn }) {
   const [isBurger, setBurger] = useState(false);
 
   const handleSwitchBurger = () => {
@@ -18,7 +16,7 @@ function Header() {
   return (
     <header className="header">
       <Logo />
-      {pathname === "/" ? (
+      {!loggedIn ? (
         <div className="header__auth">
           <Link to="/signup" className="header__link">
             Регистрация

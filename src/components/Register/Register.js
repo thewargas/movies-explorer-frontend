@@ -2,7 +2,7 @@ import "./Register.css";
 import React from "react";
 import AuthForm from "../AuthForm/AuthForm";
 
-function Register() {
+function Register({ handleRegister, apiError }) {
   return (
     <main className="register">
       <AuthForm
@@ -11,7 +11,8 @@ function Register() {
         text={"Уже зарегистрированы?"}
         link={"Войти"}
         textPath={"/signin"}
-        submitPath={"/signin"}
+        onSubmit={handleRegister}
+        apiError={apiError}
       />
     </main>
   );
