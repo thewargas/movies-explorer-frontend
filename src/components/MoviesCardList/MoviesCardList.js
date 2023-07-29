@@ -3,20 +3,25 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import MoviesCard from "../MoviesCard/MoviesCard";
-import initialCards from "../../utils/movies";
-import useWindowSize from "../../hooks/getWindowSize";
+import useWindowSize from "../../hooks/useWindowSize";
 import Preloader from "../Preloader/Preloader";
 
-function MoviesCardList({ isLoading, movies }) {
-  const { pathname } = useLocation();
+function MoviesCardList({
+  isLoading,
+  movies,
+  likeCard,
+  dislikeCard,
+  dislikeSavedCard,
+  savedMovies,
+  setDislikedCard,
+}) {
   const size = useWindowSize();
+  const { pathname } = useLocation();
   const [cards, setCards] = useState(movies);
   const [moreMovies, setMoreMovies] = useState(null);
   const [isMoreButton, setMoreButton] = useState(false);
 
-  const savedMovies = initialCards.slice(0, 3);
-
-  useEffect(() => {
+  const handleCheckWidth = () => {
     if (size.width) {
       setCards(movies.slice(0, 12));
       setMoreMovies(3);
@@ -29,10 +34,19 @@ function MoviesCardList({ isLoading, movies }) {
       setCards(movies.slice(0, 5));
       setMoreMovies(2);
     }
+  };
+
+  useEffect(() => {
+    if (pathname === "/movies") {
+      handleCheckWidth();
+    } else {
+      setCards(movies);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [size.width, movies]);
 
   useEffect(() => {
-    if (movies.length < cards.length + moreMovies) {
+    if (movies.length === cards.length) {
       setMoreButton(false);
     } else {
       setMoreButton(true);
@@ -50,17 +64,25 @@ function MoviesCardList({ isLoading, movies }) {
       ) : (
         <>
           {movies.length === 0 ? (
-            <h2 className="cards__title">Ничего не найдено</h2>
+            JSON.parse(localStorage.getItem("searchInput")) && (
+              <h2 className="cards__title">Ничего не найдено</h2>
+            )
           ) : (
             <>
-              {pathname === "/movies"
-                ? cards.map((card) => {
-                    return <MoviesCard key={card.id} card={card} />;
-                  })
-                : savedMovies.map((card) => {
-                    return <MoviesCard key={card._id} card={card} />;
-                  })}
-              {pathname === "/movies" && isMoreButton && (
+              {cards.map((card) => {
+                return (
+                  <MoviesCard
+                    key={card.id || card._id}
+                    card={card}
+                    likeCard={likeCard}
+                    dislikeCard={dislikeCard}
+                    dislikeSavedCard={dislikeSavedCard}
+                    savedMovies={savedMovies}
+                    setDislikedCard={setDislikedCard}
+                  />
+                );
+              })}
+              {isMoreButton && pathname === "/movies" && (
                 <button className="cards__button" onClick={handleAddMoreCards}>
                   Ещё
                 </button>

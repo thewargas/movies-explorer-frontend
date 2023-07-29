@@ -1,11 +1,37 @@
 import "./Movies.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import { getMovies } from "../../utils/MoviesApi";
 
-function Movies({ isLoading, setLoading }) {
-  const [movies, setMovies] = useState([]);
+function Movies({
+  isLoading,
+  setLoading,
+  likeCard,
+  dislikeSavedCard,
+  savedMovies,
+}) {
+  const [movies, setMovies] = useState(() => {
+    return JSON.parse(localStorage.getItem("movies")) || [];
+  });
+  const [isChecked, setChecked] = useState(() => {
+    return JSON.parse(localStorage.getItem("isChecked")) || false;
+  });
+  const [searchedText, setSearchedText] = useState(() => {
+    return JSON.parse(localStorage.getItem("searchInput")) || "";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("movies", JSON.stringify(movies));
+  }, [movies]);
+
+  useEffect(() => {
+    localStorage.setItem("isChecked", JSON.stringify(isChecked));
+  }, [isChecked]);
+
+  useEffect(() => {
+    localStorage.setItem("searchInput", JSON.stringify(searchedText));
+  }, [searchedText]);
 
   const filterMoviesByName = (cards, inputs) => {
     return cards.filter((card) => {
@@ -20,10 +46,11 @@ function Movies({ isLoading, setLoading }) {
     return cards.filter((card) => card.duration <= 40);
   };
 
-  function searchCards(isChecked, inputs) {
+  function searchCards(inputs) {
     setLoading(true);
     getMovies()
       .then((res) => {
+        setSearchedText(inputs.search);
         const filtredMovies = filterMoviesByName(res, inputs);
         if (isChecked) {
           setMovies(filterMoviesByDuration(filtredMovies));
@@ -41,8 +68,19 @@ function Movies({ isLoading, setLoading }) {
 
   return (
     <main className="movies">
-      <SearchForm searchCards={searchCards} />
-      <MoviesCardList isLoading={isLoading} movies={movies} />
+      <SearchForm
+        searchCards={searchCards}
+        isChecked={isChecked}
+        setChecked={setChecked}
+        searchedText={searchedText}
+      />
+      <MoviesCardList
+        isLoading={isLoading}
+        movies={movies}
+        likeCard={likeCard}
+        dislikeSavedCard={dislikeSavedCard}
+        savedMovies={savedMovies}
+      />
     </main>
   );
 }

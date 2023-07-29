@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const useFormsValidation = () => {
-  const [inputs, setInputs] = useState({ search: "" });
+  const [inputs, setInputs] = useState({});
   const [isError, setError] = useState({});
   const [messageError, setMessageError] = useState({});
   const [isValidity, setValidity] = useState(false);

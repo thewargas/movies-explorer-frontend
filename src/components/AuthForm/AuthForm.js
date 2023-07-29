@@ -77,6 +77,7 @@ function AuthForm({
               value={inputs.email || ""}
               onChange={handleChangeInput}
               placeholder="Введите email"
+              pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
               required
             />
             <span

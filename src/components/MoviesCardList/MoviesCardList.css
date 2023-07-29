@@ -3,6 +3,7 @@
   width: calc(100% - 140px);
   padding: 0 70px;
   display: grid;
+  justify-items: center;
   gap: 30px 24px;
   grid-template-columns: repeat(auto-fit, minmax(calc((100% - 140px) / 3), 1fr));
   transition: all 0.2s linear;

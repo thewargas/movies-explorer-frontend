@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import useFormsValidation from "../../hooks/useFormsValidation";
 
-function Profile({ onLogout, onSubmit, apiError }) {
+function Profile({ onLogout, onSubmit, apiError, apiSuccess }) {
   const currentUser = React.useContext(CurrentUserContext);
 
   const {
@@ -41,7 +41,7 @@ function Profile({ onLogout, onSubmit, apiError }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onSubmit(inputs);
+    onSubmit(inputs, handleEdit);
   };
 
   const handleEdit = () => {
@@ -50,7 +50,7 @@ function Profile({ onLogout, onSubmit, apiError }) {
 
   return (
     <main className="profile">
-      <h2 className="profile__title">Привет, Виталий!</h2>
+      <h2 className="profile__title">{`Привет, ${currentUser.name}`}</h2>
       <form className="profile__form" onSubmit={handleSubmit} ref={formRef}>
         <div>
           <div className="profile__input-container">
@@ -118,6 +118,11 @@ function Profile({ onLogout, onSubmit, apiError }) {
             </>
           ) : (
             <>
+              {apiSuccess && (
+                <span className="profile__api-success">
+                  Данные успешно изменены!
+                </span>
+              )}
               <button
                 className="profile__edit-button"
                 type="button"

@@ -1,22 +1,39 @@
 import "./SearchForm.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import searchIcon from "../../images/search-icon.svg";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import useFormsValidation from "../../hooks/useFormsValidation";
 
-function SearchForm({ searchCards }) {
-  const { handleChangeInput, inputs } = useFormsValidation({});
-  const [isChecked, setChecked] = useState(false);
+function SearchForm({ searchCards, isChecked, setChecked, searchedText }) {
+  const { handleChangeInput, inputs, setInputs } = useFormsValidation();
   const [isEmpty, setEmpty] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    setInputs({
+      ...inputs,
+      search: searchedText,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchedText]);
+
+  useEffect(() => {
+    handleSearchCards();
+    setEmpty(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isChecked]);
+
+  function handleSearchCards() {
     if (!inputs.search) {
       setEmpty(true);
     } else {
       setEmpty(false);
-      searchCards(isChecked, inputs);
+      searchCards(inputs);
     }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSearchCards();
   };
 
   return (
@@ -33,10 +50,11 @@ function SearchForm({ searchCards }) {
             className={`search__input ${isEmpty && `search__input_type_error`}`}
             placeholder={isEmpty ? "Введите ключевое слово" : "Фильм"}
             name="search"
+            value={inputs.search || ""}
             onChange={handleChangeInput}
             required
           />
-          <button className="search__button"></button>
+          <button className="search__button" type="submit"></button>
         </div>
         <FilterCheckbox isChecked={isChecked} setChecked={setChecked} />
       </form>
