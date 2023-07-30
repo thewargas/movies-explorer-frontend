@@ -1,12 +1,23 @@
 import "./SavedMovies.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
-function SavedMovies({ savedMovies, isLoading, dislikeCard }) {
+function SavedMovies({
+  savedMovies,
+  isLoading,
+  dislikeCard,
+  isInputsDisabled,
+  setInputsDisabled,
+}) {
   const [isChecked, setChecked] = useState(false);
 
   const [movies, setMovies] = useState(savedMovies);
+
+  useEffect(() => {
+    setMovies(savedMovies);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [savedMovies]);
 
   const filterMoviesByName = (cards, inputs) => {
     return cards.filter((card) => {
@@ -22,12 +33,14 @@ function SavedMovies({ savedMovies, isLoading, dislikeCard }) {
   };
 
   function searchCards(inputs) {
+    setInputsDisabled(true);
     const filtredMovies = filterMoviesByName(savedMovies, inputs);
     if (isChecked) {
       setMovies(filterMoviesByDuration(filtredMovies));
     } else {
       setMovies(filtredMovies);
     }
+    setInputsDisabled(false);
   }
 
   return (
@@ -36,6 +49,7 @@ function SavedMovies({ savedMovies, isLoading, dislikeCard }) {
         searchCards={searchCards}
         isChecked={isChecked}
         setChecked={setChecked}
+        isInputsDisabled={isInputsDisabled}
       />
       <MoviesCardList
         isLoading={isLoading}

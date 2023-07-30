@@ -12,6 +12,7 @@ function AuthForm({
   textPath,
   onSubmit,
   apiError,
+  isInputsDisabled,
 }) {
   const { handleChangeInput, inputs, isError, messageError, isValidity } =
     useFormsValidation({});
@@ -52,6 +53,7 @@ function AuthForm({
                 placeholder="Введите имя"
                 pattern="^[\-\sa-zA-Zа-яА-Я]*$"
                 minLength={3}
+                disabled={isInputsDisabled}
                 required
               />
               <span
@@ -78,6 +80,7 @@ function AuthForm({
               onChange={handleChangeInput}
               placeholder="Введите email"
               pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+              disabled={isInputsDisabled}
               required
             />
             <span
@@ -100,6 +103,7 @@ function AuthForm({
               onChange={handleChangeInput}
               placeholder="Введите пароль"
               minLength={6}
+              disabled={isInputsDisabled}
               required
             />
             <span
@@ -118,7 +122,7 @@ function AuthForm({
               !isValidity && `auth__submit-button_type_disabled`
             }`}
             type="submit"
-            disabled={!isValidity}
+            disabled={!isValidity || isInputsDisabled}
           >
             {buttonText}
           </button>

@@ -2,7 +2,7 @@ import "./Register.css";
 import React from "react";
 import AuthForm from "../AuthForm/AuthForm";
 
-function Register({ handleRegister, apiError }) {
+function Register({ handleRegister, apiError, isInputsDisabled }) {
   return (
     <main className="register">
       <AuthForm
@@ -13,6 +13,7 @@ function Register({ handleRegister, apiError }) {
         textPath={"/signin"}
         onSubmit={handleRegister}
         apiError={apiError}
+        isInputsDisabled={isInputsDisabled}
       />
     </main>
   );

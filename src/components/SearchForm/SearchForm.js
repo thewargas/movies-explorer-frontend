@@ -4,7 +4,13 @@ import searchIcon from "../../images/search-icon.svg";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import useFormsValidation from "../../hooks/useFormsValidation";
 
-function SearchForm({ searchCards, isChecked, setChecked, searchedText }) {
+function SearchForm({
+  searchCards,
+  isChecked,
+  setChecked,
+  searchedText,
+  isInputsDisabled,
+}) {
   const { handleChangeInput, inputs, setInputs } = useFormsValidation();
   const [isEmpty, setEmpty] = useState(false);
 
@@ -52,11 +58,20 @@ function SearchForm({ searchCards, isChecked, setChecked, searchedText }) {
             name="search"
             value={inputs.search || ""}
             onChange={handleChangeInput}
+            disabled={isInputsDisabled}
             required
           />
-          <button className="search__button" type="submit"></button>
+          <button
+            className="search__button"
+            type="submit"
+            disabled={isInputsDisabled}
+          ></button>
         </div>
-        <FilterCheckbox isChecked={isChecked} setChecked={setChecked} />
+        <FilterCheckbox
+          isChecked={isChecked}
+          setChecked={setChecked}
+          isInputsDisabled={isInputsDisabled}
+        />
       </form>
     </section>
   );

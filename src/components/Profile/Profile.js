@@ -3,7 +3,13 @@ import React, { useRef, useState, useEffect } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import useFormsValidation from "../../hooks/useFormsValidation";
 
-function Profile({ onLogout, onSubmit, apiError, apiSuccess }) {
+function Profile({
+  onLogout,
+  onSubmit,
+  apiError,
+  apiSuccess,
+  isInputsDisabled,
+}) {
   const currentUser = React.useContext(CurrentUserContext);
 
   const {
@@ -65,7 +71,7 @@ function Profile({ onLogout, onSubmit, apiError, apiSuccess }) {
               pattern="^[\-\sa-zA-Zа-яА-Я]*$"
               minLength={3}
               required
-              disabled={!isEdit}
+              disabled={!isEdit || isInputsDisabled}
             />
           </div>
           <span
@@ -88,7 +94,7 @@ function Profile({ onLogout, onSubmit, apiError, apiSuccess }) {
               onChange={handleChangeInput}
               placeholder="Введите email"
               required
-              disabled={!isEdit}
+              disabled={!isEdit || isInputsDisabled}
             />
           </div>
           <span
@@ -111,7 +117,7 @@ function Profile({ onLogout, onSubmit, apiError, apiSuccess }) {
                   !isValidity && `profile__save-button_disabled`
                 }`}
                 type="submit"
-                disabled={!isValidity}
+                disabled={!isValidity || isInputsDisabled}
               >
                 Сохранить
               </button>

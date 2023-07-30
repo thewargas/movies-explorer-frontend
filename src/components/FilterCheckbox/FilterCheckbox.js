@@ -1,7 +1,7 @@
 import "./FilterCheckbox.css";
 import React from "react";
 
-function FilterCheckbox({ isChecked, setChecked }) {
+function FilterCheckbox({ isChecked, setChecked, isInputsDisabled }) {
   return (
     <div className="checkbox">
       <div
@@ -9,7 +9,9 @@ function FilterCheckbox({ isChecked, setChecked }) {
           !isChecked && `checkbox__container_disabled`
         }`}
         onClick={() => {
-          setChecked(!isChecked);
+          if (!isInputsDisabled) {
+            setChecked(!isChecked);
+          }
         }}
       >
         <button

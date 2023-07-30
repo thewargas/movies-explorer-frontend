@@ -10,6 +10,8 @@ function Movies({
   likeCard,
   dislikeSavedCard,
   savedMovies,
+  isInputsDisabled,
+  setInputsDisabled,
 }) {
   const [movies, setMovies] = useState(() => {
     return JSON.parse(localStorage.getItem("movies")) || [];
@@ -48,6 +50,7 @@ function Movies({
 
   function searchCards(inputs) {
     setLoading(true);
+    setInputsDisabled(true);
     getMovies()
       .then((res) => {
         setSearchedText(inputs.search);
@@ -63,6 +66,7 @@ function Movies({
       })
       .finally(() => {
         setLoading(false);
+        setInputsDisabled(false);
       });
   }
 
@@ -73,6 +77,7 @@ function Movies({
         isChecked={isChecked}
         setChecked={setChecked}
         searchedText={searchedText}
+        isInputsDisabled={isInputsDisabled}
       />
       <MoviesCardList
         isLoading={isLoading}

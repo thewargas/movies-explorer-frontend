@@ -2,6 +2,7 @@ import "./App.css";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import ProtectedAuthRoute from "../ProtectedAuthRoute/ProtectedAuthRoute";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -19,12 +20,13 @@ function App() {
   const [isLoading, setLoading] = useState(false);
   const [apiError, setApiError] = useState(null);
   const [apiSuccess, setApiSuccess] = useState(null);
+  const [isInputsDisabled, setInputsDisabled] = useState(false);
 
   const [savedMovies, setSavedMovies] = useState([]);
 
   const [currentUser, setCurrentUser] = useState({});
 
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState();
 
   const navigate = useNavigate();
 
@@ -32,13 +34,14 @@ function App() {
     if (localStorage.getItem("jwt")) {
       const jwt = localStorage.getItem("jwt");
       MainApi.checkToken(jwt)
-        .then((res) => {
+        .then(() => {
           setLoggedIn(true);
-          navigate("/movies", { replace: true });
         })
         .catch((error) => {
           console.log(error);
         });
+    } else {
+      setLoggedIn(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -75,6 +78,7 @@ function App() {
   }
 
   function handleRegister(inputs) {
+    setInputsDisabled(true);
     MainApi.register(inputs.name, inputs.email, inputs.password)
       .then(() => {
         handleAuthorize(inputs);
@@ -82,10 +86,13 @@ function App() {
       .catch((error) => {
         handleSetApiError(error);
       })
-      .finally(() => {});
+      .finally(() => {
+        setInputsDisabled(false);
+      });
   }
 
   function handleAuthorize(inputs) {
+    setInputsDisabled(true);
     MainApi.authorize(inputs.email, inputs.password)
       .then((res) => {
         if (res.token) {
@@ -97,10 +104,14 @@ function App() {
       })
       .catch((error) => {
         handleSetApiError(error);
+      })
+      .finally(() => {
+        setInputsDisabled(false);
       });
   }
 
   function handleUpdateUser(inputs, handleEdit) {
+    setInputsDisabled(true);
     MainApi.changeUserInfo(inputs.userName, inputs.userEmail)
       .then((data) => {
         setCurrentUser(data);
@@ -110,6 +121,9 @@ function App() {
       })
       .catch((error) => {
         handleSetApiError(error);
+      })
+      .finally(() => {
+        setInputsDisabled(false);
       });
   }
 
@@ -169,6 +183,8 @@ function App() {
                 likeCard={handleLikeCard}
                 dislikeSavedCard={handleDislikeSavedCard}
                 savedMovies={savedMovies}
+                isInputsDisabled={isInputsDisabled}
+                setInputsDisabled={setInputsDisabled}
               />
             }
           />
@@ -182,6 +198,8 @@ function App() {
                 setLoading={setLoading}
                 savedMovies={savedMovies}
                 dislikeCard={handleDislikeCard}
+                isInputsDisabled={isInputsDisabled}
+                setInputsDisabled={setInputsDisabled}
               />
             }
           />
@@ -195,19 +213,32 @@ function App() {
                 onSubmit={handleUpdateUser}
                 apiError={apiError}
                 apiSuccess={apiSuccess}
+                isInputsDisabled={isInputsDisabled}
               />
             }
           />
           <Route
             path="/signup"
             element={
-              <Register handleRegister={handleRegister} apiError={apiError} />
+              <ProtectedAuthRoute
+                element={Register}
+                loggedIn={isLoggedIn}
+                handleRegister={handleRegister}
+                apiError={apiError}
+                isInputsDisabled={isInputsDisabled}
+              />
             }
           />
           <Route
             path="/signin"
             element={
-              <Login handleAuthorize={handleAuthorize} apiError={apiError} />
+              <ProtectedAuthRoute
+                element={Login}
+                loggedIn={isLoggedIn}
+                handleAuthorize={handleAuthorize}
+                apiError={apiError}
+                isInputsDisabled={isInputsDisabled}
+              />
             }
           />
           <Route path="*" element={<NotFound />} />

@@ -63,15 +63,26 @@ function MoviesCard({
     !isDeleted && (
       <article className="card">
         <figure className="card__container">
-          <img
-            className="card__image"
-            src={
-              pathname === "/saved-movies"
-                ? `${card.image}`
-                : `https://api.nomoreparties.co/${card.image.url}`
+          <a
+            href={
+              card.nameRU === "Виллалобос"
+                ? `https://www.youtube.com/watch?v=dYIcAGQDZno`
+                : card.trailerLink
             }
-            alt={card.nameRU}
-          />
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              className="card__image"
+              src={
+                pathname === "/saved-movies"
+                  ? `${card.image}`
+                  : `https://api.nomoreparties.co/${card.image.url}`
+              }
+              alt={card.nameRU}
+            />
+          </a>
+
           <figcaption className="card__header">
             <div className="card__info">
               <h2 className="card__title">{card.nameRU}</h2>

@@ -2,7 +2,7 @@ import "./Login.css";
 import React from "react";
 import AuthForm from "../AuthForm/AuthForm";
 
-function Login({ handleAuthorize, apiError }) {
+function Login({ handleAuthorize, apiError, isInputsDisabled }) {
   return (
     <main className="login">
       <AuthForm
@@ -14,6 +14,7 @@ function Login({ handleAuthorize, apiError }) {
         submitPath={"/movies"}
         onSubmit={handleAuthorize}
         apiError={apiError}
+        isInputsDisabled={isInputsDisabled}
       />
     </main>
   );
