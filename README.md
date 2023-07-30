@@ -61,5 +61,8 @@
 
 - Макет - https://disk.yandex.ru/d/4bkn67a2lR-OTw
 - Github - https://github.com/thewargas/react-mesto-auth
+- PullRequest - https://github.com/thewargas/movies-explorer-frontend/pull/2
+- Front - https://thewargas.nomoreparties.co/
+- Back - https://api.movies-thewargas.nomoredomains.rocks
 
 ---
