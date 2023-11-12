@@ -2,7 +2,7 @@ import "./Login.css";
 import React from "react";
 import AuthForm from "../AuthForm/AuthForm";
 
-function Login() {
+function Login({ handleAuthorize, apiError, isInputsDisabled }) {
   return (
     <main className="login">
       <AuthForm
@@ -12,6 +12,9 @@ function Login() {
         link={"Регистрация"}
         textPath={"/signup"}
         submitPath={"/movies"}
+        onSubmit={handleAuthorize}
+        apiError={apiError}
+        isInputsDisabled={isInputsDisabled}
       />
     </main>
   );
